@@ -8,6 +8,8 @@ import logo from './images/logo.png'
 class Login extends Component {
     state = {  }
     
+    formRef = React.createRef();
+
     hasDight = (str)=>{
         for(let x of str){
             if(x >= '0' && x <= '9'){
@@ -42,6 +44,7 @@ class Login extends Component {
                 message.success('login successfully');
             },3200)
         }
+        console.log(values, this.formRef);
         
     };
 
@@ -54,7 +57,7 @@ class Login extends Component {
                 </header>
                 <section className='login-content'>
                     <h2>用户登录</h2>
-                    <Form name="normal_login"  className="login-form" onFinish={this.handleSubmit}>
+                    <Form ref={this.formRef} name="normal_login" className="login-form" onFinish={this.handleSubmit}>
                         <Form.Item name={'user'}>
                             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
                         </Form.Item>
